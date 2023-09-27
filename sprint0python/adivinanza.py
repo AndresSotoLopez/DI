@@ -1,8 +1,9 @@
 #Imports
 import os
+import random
 
 #Variables globales
-NumeroAdivinanzas = 3;
+NumeroAdivinanzas = 3
 
 
 #Nuevo metodo donde se iteren las adivinanzas.
@@ -40,13 +41,27 @@ def __main__():
     os.system("clear")
     puntos = 0
     puntuacion = 0
+    iteradorAnt = -2
 
-    for i in range(NumeroAdivinanzas):
+    for i in range(2):
+        
+        #Variable con numero aleatorio entre 0 y 2
+        iterador = random.randint(0,2)
+
+        #Control para que no se repitan las adivinanzas
+        if(iterador == iteradorAnt):
+            if(iterador == 3):
+                iterador -= 1
+            else:
+                iterador += 1
+        #variable para saber el iterador anterior
+        iteradorAnt = iterador
+
         print("\n[+] Adivina adivinanza: ")
         print("--------------------------------------------\n")
-        __adivinanzas__(i)
+        __adivinanzas__(iterador)
         print("\n--------------------------------------------\n[+] Opciones:\n")  
-        __soluciones__(i)
+        __soluciones__(iterador)
         puntuacion = __puntuacion__()
         os.system("clear")
 
