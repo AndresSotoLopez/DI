@@ -25,10 +25,7 @@ class MainWindow():
         ]
 
         for i, cell in enumerate(self.cells):
-           
-         
-            img = (Image.open(cell.path)).resize((100, 100), Image.Resampling.LANCZOS)
-            cell.imagetk = ImageTk.PhotoImage(img)
-            label = ttk.Label(root, image = cell.imagetk, text = cell.title, compound = tk.BOTTOM)
+          
+            label = ttk.Label(root, image = cell.imageTk, text = cell.title, compound = tk.BOTTOM)
             label.grid(row = 0,column = i)
             label.bind("<Button-1>",lambda event, cell = cell: self.onButtonClicked(cell))

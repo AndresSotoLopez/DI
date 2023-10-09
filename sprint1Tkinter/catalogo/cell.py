@@ -1,5 +1,5 @@
 import tkinter as tk
-from PIL import ImageTk
+from PIL import Image, ImageTk
 
 class Cell:
 
@@ -7,4 +7,5 @@ class Cell:
 
         self.title = title
         self.path = path
-        self.imageTk = ImageTk.PhotoImage(file = self.path)
+        img = (Image.open(self.path)).resize((100, 100), Image.Resampling.LANCZOS)
+        self.imageTk = ImageTk.PhotoImage(img)
