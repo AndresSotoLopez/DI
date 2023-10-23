@@ -30,9 +30,13 @@ class loading_window:
         
         #Creacion/actualizacion del circulo de carga
         self.draw_progress_circle(self.progress)
-        
         self.update_progress_circle()
-        
+
+        #Obtener el JSON desde github y comprobar el hilo de descar
+        self.feth_json_data()
+        self.check_thread()
+
+    #Funcion para crear el arco de carga en la ventana    
     def draw_progress_circle(self, progress):
         
         self.canvas.delete("progress")
@@ -40,6 +44,7 @@ class loading_window:
         
         self.canvas.create_arc(10, 10, 35, 35, start = 0, extent=angle, tags="progress", outline='green', width=4, style=tk.ARC)
         
+    #Funcion para actualziar el progreso del circulo de carga
     def update_progress_circle(self):
         if(self.progress < 100):
             self.progress += 10
@@ -48,23 +53,24 @@ class loading_window:
             
         self.draw_progress_circle(self.progress)
         self.root.after(100, self.update_progress_circle)
-        
-    def launch_main_window(json_data):
-        root = Tk()
-        app = MainWindow(root, json_data)
-        root.mainloop()    
-        
+
+    #Funcion para obtener el JSON alojado en nuestro github    
     def feth_json_data(self):
         response = requests.get("https://raw.githubusercontent.com/AndresSotoLopez/DI/main/recursos/catalog.json")
         if response.status_code == 200:
             self.json_data = response.json()
             self.finished=True
-                      
+    
+    #Funcion para comprobar si el hilo de descarga de datos ha terminado
     def check_thread(self):
         if(self.finished):
             self.root.destroy()
             launch_main_window(self.json_data)
         else:
             self.root.adter(100, self.check_thread)
-            
-    
+
+def launch_main_window(json_data):
+    #root = Tk()
+    #app = MainWindow(root)
+    #root.mainloop()   
+    pass 
