@@ -1,4 +1,3 @@
-import threading
 import requests
 from tkinter import Tk
 import tkinter as tk
@@ -70,7 +69,7 @@ class loading_window:
             self.root.adter(100, self.check_thread)
 
 def launch_main_window(json_data):
-    #root = Tk()
-    #app = MainWindow(root)
-    #root.mainloop()   
+    root = Tk()
+    app = MainWindow(root, json_data)
+    root.mainloop()   
     pass 
