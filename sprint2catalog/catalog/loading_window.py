@@ -17,6 +17,11 @@ class loading_window:
         self.finished = False
         self.json_data = []
         self.progress=0
+
+        #Centrar la ventana
+        x = (self.root.winfo_screenwidth() - self.root.winfo_reqwidth()) / 2
+        y = (self.root.winfo_screenheight() - self.root.winfo_reqheight()) / 2
+        self.root.geometry(f"+{int(x)}+{int(y)}")
         
         #Nuevo label a la hora de descargar los datos de GitHub
         self.label = tk.Label(self.root, text="[!] Cargando datos....", font=("Arial", 12))

@@ -28,6 +28,11 @@ class MainWindow():
         root.title("MainWindow")
         self.cells = []
 
+        #Centrar la ventana
+        x = (self.root.winfo_screenwidth() - self.root.winfo_reqwidth()) / 2
+        y = (self.root.winfo_screenheight() - self.root.winfo_reqheight()) / 2
+        self.root.geometry(f"+{int(x)}+{int(y)}")
+
         #Bucle para recorrer todos los items del JSON descargado y añadirlo a la celda
         for item in json_data:
 
