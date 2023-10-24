@@ -1,3 +1,4 @@
+import threading
 import requests
 from tkinter import Tk
 import tkinter as tk
@@ -34,11 +35,16 @@ class loading_window:
         
         #Creacion/actualizacion del circulo de carga
         self.draw_progress_circle(self.progress)
-        self.update_progress_circle()
 
-        #Obtener el JSON desde github y comprobar el hilo de descar
-        self.feth_json_data()
-        self.check_thread()
+        self.thread = threading.Thread(target=self.fetch_json_data) ## Guardamos datos en el thread
+        self.thread.start() ## Comenzamos el thread
+        
+        self.check_thread() ## Comprobamos estado del thread
+        
+        self.update_progress_circle()
+        
+        self.thread = threading.Thread(target=self.fetch_json_data)
+        self.thread.start()
 
     #Funcion para crear el arco de carga en la ventana    
     def draw_progress_circle(self, progress):
@@ -59,7 +65,7 @@ class loading_window:
         self.root.after(100, self.update_progress_circle)
 
     #Funcion para obtener el JSON alojado en nuestro github    
-    def feth_json_data(self):
+    def fetch_json_data(self):
         response = requests.get("https://raw.githubusercontent.com/AndresSotoLopez/DI/main/recursos/catalog.json")
         if response.status_code == 200:
             self.json_data = response.json()
@@ -71,11 +77,11 @@ class loading_window:
             self.root.destroy()
             launch_main_window(self.json_data)
         else:
-            self.root.adter(100, self.check_thread)
+            self.root.after(100, self.check_thread)
 
 #Lanzamos la ventana principal
 def launch_main_window(json_data):
     root = Tk()
     app = MainWindow(root, json_data)
     root.mainloop()   
-    pass 
+     

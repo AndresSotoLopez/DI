@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 class DetailWindow:
-    def __init__(self, root, title, image, description):
+    def __init__(self, root, title, description, image):
         
         #Variables del constructor
         self.root = root
