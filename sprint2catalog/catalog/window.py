@@ -3,7 +3,7 @@ import requests
 from io import BytesIO
 import tkinter as tk
 from PIL import Image, ImageTk
-from tkinter import messagebox
+from tkinter import messagebox, Canvas, Scrollbar, Frame, Label
 
 from cell import Cell
 from detail_window import DetailWindow
@@ -50,6 +50,16 @@ class MainWindow():
         #Añadimos la barra_menu a la configuracion de la ventana
         root.config(menu=barra_menu)
 
+        #Scrollbar
+        self.canvas = Canvas(root) 
+        self.scrollbar = Scrollbar(root, orient="vertical", command=self.canvas.yview) 
+
+        self.scrollable_frame = Frame(self.canvas)  
+        self.scrollable_frame.bind("<Configure>",lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")))
+
+        self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor="nw")
+        self.canvas.configure(yscrollcommand=self.scrollbar.set) 
+
         #Bucle para recorrer todos los items del JSON descargado y añadirlo a la celda
         for item in json_data:
 
@@ -63,7 +73,18 @@ class MainWindow():
             cell = Cell(name, description, img_url, image)
             self.cells.append(cell)
 
-            #Creacion de etiquetas al generar las imagenes
-            label = ttk.Label(root, image=cell.imagen, text=name, compound=tk.BOTTOM)
-            label.grid(row=len(self.cells) - 1, column=0)
-            label.bind("<Button-1>", lambda event, cell=cell: self.on_button_clicked(cell.name, cell.descripcion, cell.imagen))
+            #Colocacion del scrollbar 
+            self.canvas.grid(row=0, column=0, sticky="nsew") 
+            self.scrollbar.grid(row=0, column=1, sticky="ns") 
+        
+            root.grid_rowconfigure(0, weight=1)
+            root.grid_columnconfigure(0, weight=1)
+
+            #Creacion del Fram
+            frame = Frame(self.scrollable_frame) 
+            frame.pack(pady=10)
+
+            #Mostrar los label de los item en el json
+            label = Label(frame, image=cell.imagen, text=name, compound=tk.BOTTOM) 
+            label.grid(row=0, column=0)
+            label.bind("<Button-1>", lambda event, cell=cell: self.on_button_clicked(name, description, image))     
