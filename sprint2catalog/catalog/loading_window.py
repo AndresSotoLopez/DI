@@ -68,6 +68,7 @@ class loading_window:
         else:
             self.root.adter(100, self.check_thread)
 
+#Lanzamos la ventana principal
 def launch_main_window(json_data):
     root = Tk()
     app = MainWindow(root, json_data)
