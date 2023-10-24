@@ -36,10 +36,10 @@ class loading_window:
         #Creacion/actualizacion del circulo de carga
         self.draw_progress_circle(self.progress)
 
-        self.thread = threading.Thread(target=self.fetch_json_data) ## Guardamos datos en el thread
-        self.thread.start() ## Comenzamos el thread
+        self.thread = threading.Thread(target=self.fetch_json_data) #Guardamos datos en el thread
+        self.thread.start() #Comenzamos el thread
         
-        self.check_thread() ## Comprobamos estado del thread
+        self.check_thread() #Comprobamos estado del thread
         
         self.update_progress_circle()
         
