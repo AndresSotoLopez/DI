@@ -8,6 +8,7 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Mostramos el layout de la actividad
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
     }

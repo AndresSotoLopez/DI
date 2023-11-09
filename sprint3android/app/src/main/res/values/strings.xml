@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">My_Catalog</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Catalog Activity Strings-->
+    <string name="navigation_drawer_open">open Drawer</string>
+    <string name="navigation_drawer_close">Close Drawer</string>
+
+    <!--Catalog Fragment Strings-->
+    <string name="CatalogFragment">CatalogFragment</string>
+    <string name="text_About">Este es el AboutFragment</string>
+
+    <!--About Fragment Strings-->
+    <string name="AboutFragment">AboutFragment</string>
+
+    <!--Nav Header Strings-->
+    <string name="header_string">Andres Soto Lopez</string>
+
+    <!--Drawer Menu Strings-->
+    <string name="text">Información:</string>
+
 </resources>
