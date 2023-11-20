@@ -1,9 +1,11 @@
 package com.clase.myothercatalog;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -21,28 +23,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class main_activity extends AppCompatActivity {
+   
+    //Definicion de las variables
+    private RecyclerView recyclerView;
     
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list_recycler_view);
-        //Definicion de variables
-        List<cod_data> cod_list = peticion();
-        
-        
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        peticion();
     }
     
     //Funcion que nos lanzará la peticion get a nuestro github : "https://raw.githubusercontent.com/AndresSotoLopez/DI/main/recursos/catalog.json"
    
-    private List<cod_data> peticion(){
+    private void peticion(){
         
+        //Creacion de la lista para guardar los datos de la peticion
         List<cod_data> cod_list = new ArrayList<>();
         
+        //Creamos una peticion para obtener los datos del JSON
         JsonArrayRequest request = new JsonArrayRequest
             (Request.Method.GET,
-            "https://raw.githubusercontent.com/AndresSotoLopez/DI/main/recursos/catalog.json", 
+            "https://raw.githubusercontent.com/AndresSotoLopez/DI/main/recursos/more_catalog.json",
             null, 
             new Response.Listener<JSONArray>(){
                 @Override
@@ -55,29 +59,29 @@ public class main_activity extends AppCompatActivity {
                             cod_data cod_data = new cod_data(jsonObject);
                             cod_list.add(cod_data);
                         }
+                        
+                        //Mostramos el recyclerview a traves de nuestro adapter
+                        adapter adapter = new adapter(cod_list, main_activity.this);
+                        recyclerView.setAdapter(adapter);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(main_activity.this));
+                        
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    
                 }
             },
-
                 new Response.ErrorListener() {
     
                     @Override
                     public void onErrorResponse(VolleyError error) {
-    
                         error.printStackTrace();
-                        
                     }
                 }
-
-                
             );
-
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(request);
         
-            return cod_list;
+        Volley.newRequestQueue(this).add(request);
     }
+    
     
 }

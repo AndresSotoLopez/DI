@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.clase.myothercatalog"
-    compileSdk = 28
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.clase.myothercatalog"
         minSdk = 28
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
