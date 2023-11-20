@@ -1,6 +1,7 @@
 package com.clase.myothercatalog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,7 +23,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class main_activity extends AppCompatActivity {
+//Implementamos las interfaz select_listener para poder acceder a la detail_activity de cada celda de nuestro recyclerview
+public class main_activity extends AppCompatActivity implements select_listener {
    
     //Definicion de las variables
     private RecyclerView recyclerView;
@@ -32,6 +34,7 @@ public class main_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         
+        //Definimos el recyclerview y lanzamos la peticion
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         peticion();
     }
@@ -61,7 +64,7 @@ public class main_activity extends AppCompatActivity {
                         }
                         
                         //Mostramos el recyclerview a traves de nuestro adapter
-                        adapter adapter = new adapter(cod_list, main_activity.this);
+                        adapter adapter = new adapter(cod_list, main_activity.this, main_activity.this);
                         recyclerView.setAdapter(adapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(main_activity.this));
                         
@@ -83,5 +86,12 @@ public class main_activity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
     
+    //Funcion que nos permitirá acceder a la detail_activity de cada celda de nuestro recycler
+    @Override
+    public void onItemClick(cod_data cod_data) {
     
+        Intent intent = new Intent(main_activity.this, detail_activity.class);
+        startActivity(intent);
+        
+    }
 }

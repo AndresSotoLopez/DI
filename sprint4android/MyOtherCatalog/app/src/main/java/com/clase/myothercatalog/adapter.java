@@ -20,12 +20,14 @@ public class adapter extends RecyclerView.Adapter<adapter.MyViewHolder> {
     private final List<cod_data> cod_list;
     private final LayoutInflater layoutInflater;
     private final Context context;
+    private final select_listener select_listener;
     
     //Constructor
-    public adapter(List<cod_data> cod_list, Context context) {
+    public adapter(List<cod_data> cod_list, Context context, select_listener listener) {
         this.layoutInflater = LayoutInflater.from(context);
         this.cod_list = cod_list;
         this.context = context;
+        this.select_listener = listener;
     }
     
     //Funcion que nos permite crear la vista de nuestra recyclerview
@@ -44,6 +46,16 @@ public class adapter extends RecyclerView.Adapter<adapter.MyViewHolder> {
         
         holder.title.setText(cod_data.getTitle());
         Glide.with(context).load(cod_data.getUrl()).into(holder.image);
+        
+        //Cuando se haga click en la vista de nuestra recyclerview, se llama al listener para ir a la detail_activity
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                select_listener.onItemClick(cod_data);
+            }
+            
+        });
         
     }
     
@@ -64,7 +76,6 @@ public class adapter extends RecyclerView.Adapter<adapter.MyViewHolder> {
             
             image = itemView.findViewById(R.id.iconImageView);
             title = itemView.findViewById(R.id.cod_title);
-            
         }
         
     }
