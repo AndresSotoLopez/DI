@@ -91,6 +91,14 @@ public class main_activity extends AppCompatActivity implements select_listener 
     public void onItemClick(cod_data cod_data) {
     
         Intent intent = new Intent(main_activity.this, detail_activity.class);
+        //Mandamos los datos a la vista de nuestra actividad mediante los putExtra y los recibiremos con getExtra
+        String title = cod_data.getTitle();
+        String url = cod_data.getUrl();
+        String description = cod_data.getDescription();
+        
+        intent.putExtra(detail_activity.TITLE, title);
+        intent.putExtra(detail_activity.URL, url);
+        intent.putExtra(detail_activity.DESCRIPTION, description);
         startActivity(intent);
         
     }
