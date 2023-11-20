@@ -1,0 +1,81 @@
+[
+    {
+
+        "name" : "COD 4",
+        "description" : "Call Of Duty 4",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/cod4.png?raw=true"
+
+    },
+
+    {
+
+        "name" : "COD MW2",
+        "description" : "Call Of Duty Modern Warfare 2",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/codmw2.png?raw=true"
+
+    },
+
+    {
+
+        "name" : "COD MW3",
+        "description" : "Call Of Duty Modern Warfare 3",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/codmw3.png?raw=true"
+
+    },
+
+    {
+
+        "name" : "COD BO2",
+        "description" : "Call Of Duty Balck Ops 2",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/codbo2.png?raw=true"
+
+    },
+
+    {
+
+        "name" : "COD BO3",
+        "description" : "Call Of Duty Black Ops 3",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/codbo3.png?raw=true"
+
+    },
+
+    {
+
+        "name" : "COD 4 - 2",
+        "description" : "Call Of Duty 4",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/cod4.png?raw=true"
+
+    },
+
+    {
+
+        "name" : "COD MW2 - 2",
+        "description" : "Call Of Duty Modern Warfare 2",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/codmw2.png?raw=true"
+
+    },
+
+    {
+
+        "name" : "COD MW3 - 2",
+        "description" : "Call Of Duty Modern Warfare 3",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/codmw3.png?raw=true"
+
+    },
+
+    {
+
+        "name" : "COD BO2 - 2",
+        "description" : "Call Of Duty Balck Ops 2",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/codbo2.png?raw=true"
+
+    },
+
+    {
+
+        "name" : "COD BO3 - 2",
+        "description" : "Call Of Duty Black Ops 3",
+        "img_url" : "https://github.com/AndresSotoLopez/DI/blob/main/recursos/codbo3.png?raw=true"
+
+    }
+]
