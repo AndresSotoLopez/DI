@@ -3,6 +3,7 @@ package com.clase.myothercatalog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -78,7 +79,7 @@ public class main_activity extends AppCompatActivity implements select_listener 
     
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
+                        Toast.makeText(main_activity.this, "Error: " + error, Toast.LENGTH_SHORT).show();
                     }
                 }
             );
